@@ -1,0 +1,4 @@
+jupyter_data/.ipynb_checkpoints
+jupyter_data/historico
+influx_data/*
+.DS_Store
