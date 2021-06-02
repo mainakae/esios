@@ -59,9 +59,11 @@ from(bucket: "electricidad")
   |> filter(fn: (r) => r["_measurement"] == "esios")
   |> filter(fn: (r) => r["_field"] == "PVPC")
   |> filter(fn: (r) => r["Peaje"] == "2.0.DHA" or r["Peaje"] == "2.0TD")
-  |> aggregateWindow(every: 1h, fn: last, createEmpty: false)
+  //|> aggregateWindow(every: 1h, fn: last, createEmpty: false)
   |> group(columns: ["_field"])
   |> sort(columns: ["_time"])
   |> map(fn: (r) => ({_time: r._time, _field: "pvpc", _value: r._value / 1000.0}))
   |> yield(name: "pvpc")
 ```
+
+He comentado el `aggregateWindow` porque realmente no es necesario y estaba causando que los datos aparezcan "retrasados" una hora en el panel de exploración de Influxdb. En grafana, con el aggregateWindow aparece perfectamente :)
