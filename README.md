@@ -72,3 +72,22 @@ from(bucket: "electricidad")
 ```
 
 He comentado el `aggregateWindow` porque realmente no es necesario y estaba causando que los datos aparezcan "retrasados" una hora en el panel de exploración de Influxdb. En grafana, con el aggregateWindow aparece perfectamente :)
+
+Precio de compensación de autoconsumo:
+
+```flux
+data = from(bucket: "tests")
+    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+    |> filter(fn: (r) => r["_measurement"] == "esios")
+    |> filter(fn: (r) => r["_field"] == "PMH" or r["_field"] == "CDSVh")
+    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+    |> map(fn: (r) => ({
+        _time: r._time,
+        _value: (r.PMH - r.CDSVh)
+    }))
+    |> set(key: "_measurement", value: "precios")
+    |> set(key: "_field", value: "precio_compensacion")
+    |> group(columns: ["_measurement", "_field"])
+    |> sort(columns: ["_time"])
+    |> yield()
+```
