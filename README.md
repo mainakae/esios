@@ -7,6 +7,7 @@ https://youtu.be/oh0Lvhbh_M4
 * [Link web término de facturación de energía activa](https://www.esios.ree.es/es/pvpc)
 * [Link web descarga ESIOS](https://www.esios.ree.es/es/descargas?date_type=publicacion&start_date=01-06-2021&end_date=01-06-2021)
 * [Link BOE cálculo de tarifas autoconsumo](https://www.boe.es/buscar/act.php?id=BOE-A-2014-3376)
+* [Link BOE cálculo de pago de excedentes](https://www.boe.es/buscar/doc.php?id=BOE-A-2019-5089)
 
 Para consultar en formato web en tiempo real los precios para las tarifas de autoconsumo etc: utlizar el primer link. Inspeccionando la conexión, podemos encontrar la petición al servicio web donde descargamos bastantes datos sobre las tarifas de autoconsumo, aunque la mayor cantidad de información (y mejor formateada que he encontrado) se puede obtener desde el área de descargas.
 
